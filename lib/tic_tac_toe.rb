@@ -81,71 +81,47 @@ class TicTacToe
     end
     false
   end
-end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def full?(board)
-  board.all? do |moves|
-    moves == "X" || moves == "O"
+  def full?
+    @board.all? do |moves|
+      moves == "X" || moves == "O"
+    end
   end
-end
 
-def draw?(board)
-  if won?(board)
-    false
-  else
-    if full?(board)
+  def draw?
+    if won?
+      false
+    else
+      if full?
+        true
+      else
+        false
+      end
+    end
+  end
+
+  def over?
+    if won?
+      true
+    elsif draw?
       true
     else
       false
     end
   end
+
+  def winner
+    if won?
+     return @board[won?[0]]
+    else
+      return nil
+    end
+  end
+  
 end
 
-def over?(board)
-  if won?(board)
-    true
-  elsif draw?(board)
-    true
-  else
-    false
-  end
-end
 
-def winner(board)
-  if won?(board)
-   return board[won?(board)[0]]
-  else
-    return nil
-  end
-end
 
-def endgame(board)
-  if winner(board) == "X"
-    puts "Congratulations X!"
-  elsif winner(board) == "O"
-    puts "Congratulations O!"
-  elsif draw?(board)
-    puts "Cat's Game!"
-  else
-    nil
-  end
-end
 
 def play(board)
    until over?(board)
